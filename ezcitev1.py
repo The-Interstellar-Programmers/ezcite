@@ -5,9 +5,16 @@
 import requests
 from bs4 import BeautifulSoup
 import os
-import time
-import datetime
 from datetime import date
+import csv
+import pygame
+from pygame import mixer
+import time
+import subprocess
+
+pygame.mixer.init()
+pygame.mixer.music.load("ezs.mp3")
+
  
 today = date.today()
 
@@ -77,17 +84,55 @@ vvvvvvv           vvvvvvv1::::1           0::::::0   0::::::0
 
     if i == "2":
         os.system("clear")
-        mla8book = input("Enter Book ISBN Number:")
+        mla8book = input("Enter Book ISBN Number (Please ONLY Enter a book with an isbn-13 number):")
         isbn1 = "https://www.isbnsearcher.com/books/" + mla8book
         reqs = requests.get(isbn1)
+
+
         soup = BeautifulSoup(reqs.text, 'lxml')
+
         for heading in soup.find_all(["h1"]):
             heading.text.strip()
-        soup = BeautifulSoup(reqs.text, 'html.parser')
-        author = soup.find_all ('text-success')
-        bookname = heading.text.strip()
-        print(author)
-    
+            booktitlemla = heading.text.strip()
+
+        #Converting the HTML content to a Soup object
+        html_soup_object = BeautifulSoup(reqs.text, 'html.parser')
+
+        
+
+        bookpub = html_soup_object.find_all(class_="text-success")
+        for publisher in bookpub:
+            if "publisher" in str(publisher):
+                publisher.text.strip()
+                bookpublishermla = publisher.text.strip()
+
+        
+
+        year = html_soup_object.find_all(class_="col-8 col-sm-9 mb-1")
+        for pubyear in year:
+            if "-" in str(pubyear):
+                pubyear.text.strip()
+                yearmla = pubyear.text.strip()
+
+
+        #Finding all the elements by using class name called "text-success"
+        author = html_soup_object.find_all(class_="text-success")
+        for author in author:
+            if "author" in str(author):
+                author.text.strip()
+                author = author.text.strip()
+
+
+            citedatebookmla8 = today.strftime("%d %b. %Y.")
+            mla8_bookcite_result = bookpublishermla + yearmla
+            print(mla8_bookcite_result)
+            input("\n\nPress Enter To Go Back...")
+
+
+
+                
+
+
         input("\n\nPress Enter To Go Back...")
 
 
@@ -112,6 +157,56 @@ vvvvvvv           vvvvvvv1::::1           0::::::0   0::::::0
     if i == "4":
         os.system("clear")
         apa7book = input("Enter Book ISBN Number:")
+
+    if i == "magicDJleo":
+        os.system("clear")
+        print("""
+ _____ _            __  __             _        ____      _   _               
+|_   _| |__   ___  |  \/  | __ _  __ _(_) ___  |  _ \    | | | |    ___  ___  
+  | | | '_ \ / _ \ | |\/| |/ _` |/ _` | |/ __| | | | |_  | | | |   / _ \/ _ \ 
+  | | | | | |  __/ | |  | | (_| | (_| | | (__  | |_| | |_| | | |__|  __/ (_) |
+  |_| |_| |_|\___| |_|  |_|\__,_|\__, |_|\___| |____/ \___/  |_____\___|\___/ 
+                                 |___/                                        
+        \n\n"""
+        )
+        print("""
+         _   _                 ____  _             _                 
+        | \ | | _____      __ |  _ \| | __ _ _   _(_)_ __   __ _   _ 
+ _____  |  \| |/ _ \ \ /\ / / | |_) | |/ _` | | | | | '_ \ / _` | (_)
+|_____| | |\  | (_) \ V  V /  |  __/| | (_| | |_| | | | | | (_| |  _ 
+        |_| \_|\___/ \_/\_/   |_|   |_|\__,_|\__, |_|_| |_|\__, | (_)
+                                             |___/         |___/     
+        \n"""
+        )
+        print("""
+ _   _   _        _____      ____ _ _____           ___         ____ 
+| |_| | | | ___  | ____|____/ ___(_)_   _|__   ___ / _ \ _ __  / ___|
+| __| |_| |/ _ \ |  _| |_  / |   | | | |/ _ \ / __| | | | '_ \| |  _ 
+| |_|  _  |  __/ | |___ / /| |___| | | |  __/ \__ \ |_| | | | | |_| |
+ \__|_| |_|\___| |_____/___|\____|_| |_|\___| |___/\___/|_| |_|\____|
+                                                                     
+        \n"""
+        )
+        pygame.mixer.music.play()
+        while True:
+            os.system("clear")
+            mdlps = input("\n\nType 's' to end this wonderfullll music......\n(IF YOU STOP MUSIC, I'LL FIND YOUR HOUSE AND PUT A Bigggg SPEAKER THERE AND PLAY MY EZCITE MUSIC FOREVER!!!! lol ;3)\n\n'p' to pause music...........\n\nand 'r' to resume MuSic.......\n")
+            if mdlps == "s":
+                pygame.mixer.music.stop()
+                break
+            if mdlps == "p":
+                pygame.mixer.music.pause()
+            if mdlps == "r":
+                pygame.mixer.music.unpause()
+        input("\n\nPress Enter To Go Back...")
+
+
+    if i == "d0nutboi":
+        subprocess.call(["python3", "d0nut.py"])
+        input("Press ENTER to quit")
+        time.sleep(1)
+        continue
+
 
 
 
