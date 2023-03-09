@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-ezCite Version 1.0.2-alpha (GUI VERSION)
+ezCite Version 2.0.0-beta (GUI VERSION)
 By Leodeng & Allen Wang
 Leo's Website & Email: leosblog.xyz | leodeng_hack@163.com
 HELP WANTED: help pls bro i need fixed code without any errors and pls send the email as well moneyyy wil be 1000000000usd haha just kiding were using u 4 free lol haha troll my CODE IS DRIVING ME CRAZYYYYYYYYY :)))(((())))(((())))(((())))
@@ -30,6 +30,103 @@ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PA
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
+"""
+             ,%%%%%%%%,
+           ,%%/\%%%%/\%%
+          ,%%%\c "" J/%%%
+ %.       %%%%/ o  o \%%%
+ `%%.     %%%%    _  |%%%
+  `%%     `%%%%(__Y__)%%'
+  //       ;%%%%`\-/%%%'
+ ((       /  `%%%%%%%'
+  \\    .'          |
+   \\  /       \  | |
+    \\/         ) | |
+     \         /_ | |__
+     (___________))))))) 攻城湿
+
+
+ _                   _                  
+| |    ___  ___   __| | ___ _ __   __ _ 
+| |   / _ \/ _ \ / _` |/ _ \ '_ \ / _` |
+| |__|  __/ (_) | (_| |  __/ | | | (_| |
+|_____\___|\___/ \__,_|\___|_| |_|\__, |
+                                  |___/
+
+
+
+                 _ 
+  __ _ _ __   __| |
+ / _` | '_ \ / _` |
+| (_| | | | | (_| |
+ \__,_|_| |_|\__,_|
+
+
+
+
+    _    _ _             __        __                
+   / \  | | | ___ _ __   \ \      / /_ _ _ __   __ _ 
+  / _ \ | | |/ _ \ '_ \   \ \ /\ / / _` | '_ \ / _` |
+ / ___ \| | |  __/ | | |   \ V  V / (_| | | | | (_| |
+/_/   \_\_|_|\___|_| |_|    \_/\_/ \__,_|_| |_|\__, |
+                                               |___/
+
+  __  _      _  __     _      ____                   _   __  
+ / / / \    | |/ /    / \    / ___| _ __   ___   ___| | _\ \ 
+| | / _ \   | ' /    / _ \   \___ \| '_ \ / _ \ / __| |/ /| |
+| |/ ___ \ _| . \ _ / ___ \   ___) | |_) | (_) | (__|   < | |
+| /_/   \_(_)_|\_(_)_/   \_\ |____/| .__/ \___/ \___|_|\_\| |
+ \_\                               |_|                   /_/ 
+"""
+
+
+
+
+
+"""
+              ,----------------,              ,---------,
+         ,-----------------------,          ,"        ,"|
+       ,"                      ,"|        ,"        ,"  |
+      +-----------------------+  |      ,"        ,"    |
+      |  .-----------------.  |  |     +---------+      |
+      |  |                 |  |  |     | -==----'|      |
+      |  |  I LOVE DOS!    |  |  |     |         |      |
+      |  |  Bad command or |  |  |/----|`---=    |      |
+      |  |  C:\>_          |  |  |   ,/|==== ooo |      ;
+      |  |                 |  |  |  // |(((( [33]|    ,"
+      |  `-----------------'  |," .;'| |((((     |  ,"
+      +-----------------------+  ;;  | |         |,"
+         /_)______________(_/  //'   | +---------+
+    ___________________________/___  `,
+   /  oooooooooooooooo  .o.  oooo /,   \,"-----------
+ / ==ooooooooooooooo==.o.  ooo= //   ,`\--{)B     ,"
+ /_==__==========__==_ooo__ooo=_/'   /___________,"
+
+
+"""
+
+
+"""
+                  ___====-_  _-====___
+            _--^^^#####//      \\#####^^^--_
+         _-^##########// (    ) \\##########^-_
+        -############//  |\^^/|  \\############-
+      _/############//   (@::@)   \\############\_
+     /#############((     \\//     ))#############\
+    -###############\\    (oo)    //###############-
+   -#################\\  / VV \  //#################-
+  -###################\\/      \//###################-
+ _#/|##########/\######(   /\   )######/\##########|\#_
+ |/ |#/\#/\#/\/  \#/\##\  |  |  /##/\#/  \/\#/\#/\#| \|
+ `  |/  V  V  `   V  \#\| |  | |/#/  V   '  V  V  \|  '
+    `   `  `      `   / | |  | | \   '      '  '   '
+                     (  | |  | |  )
+                    __\ | |  | | /__
+                   (vvv(VVV)(VVV)vvv)                
+                        神兽保佑
+                       代码无BUG!
+"""
+
 
 #Imports
 from tkinter import * 
@@ -42,9 +139,9 @@ from scrtext import credsmusic
 import requests
 from bs4 import BeautifulSoup
 import time
-from datetime import *
 import csv
 from datetime import datetime
+from datetime import date
 
 
 
@@ -54,7 +151,7 @@ from datetime import datetime
 #Define GUI size and window title
 window = tk.Tk()
 window.configure(background='#3b3b4a')
-window.title('ezCite Version 2.0.0a')  
+window.title('ezCite Version 2.0.0b')  
 cwd_icon = os.getcwd() + r'/assets/images/appicon.png'
 cwd_bt = os.getcwd() + r'/assets/images/button_help-faq.png'
 cwd_bt1 = os.getcwd() + r'/assets/images/button_about-the-devs.png'
@@ -567,6 +664,7 @@ def apa7book():
 
             
             AN = []
+            AN2 = []
             # Find all the elements with class name "text-success"
             authors = soup.find_all(class_="text-success")
             for author in authors:
@@ -606,7 +704,12 @@ def apa7book():
                         # Reverse the order of the name parts (if applicable)
                         name_parts = author_name.split()
                         if len(name_parts) > 1 and len(name_parts) < 10:
-                           author_name = name_parts[-1]+ ", " + " " + " ".join(name_parts[:-1])
+                           author_LAST_name = name_parts[-1]
+                           #Put Author name into List "AN2" (For APA7 Citation Format : Last Name, First Name Letter)
+                           AN2.append(author_LAST_name)
+                           time.sleep(0.5)
+                           author_FIRST_name = "".join(name_parts[:-1])
+                           AN2.append(author_FIRST_name)
 
                         # test the remove_middle_name function
                         name_with_middle = author_name
@@ -614,11 +717,35 @@ def apa7book():
 
                         print(name_with_middle)   # "John Michael Smith"
                         #authornameoutput = name_without_middle
-                        #print(authornameoutput)
+
                         # dd/mm/YY H:M:S
                         # datetime object containing current date and time
                         now = datetime.now()
                         dt_string = now.strftime("%Y/%m/%d %H:%M:%S")
+                     #Remove Repeated elements in a list
+                     res = [*set(AN2)]
+                     print(res)
+                     
+                     #Get Last Name (0), (1) is First Name
+                     res_lastname = res[0]
+                     
+                     def listToString(res_lastname):
+                        # initialize an empty string
+                        str1 = ""
+                     
+                        # traverse in the string
+                        for ele in res_lastname:
+                           str1 += ele
+                     
+                        # return string
+                        return str1
+                     
+                     lastnameout = listToString(res_lastname)
+                     print(listToString(res_lastname))
+                     
+                     NAMEOUT = lastnameout[0]
+                     print(NAMEOUT)
+
 
 
                      # Print the author's name
