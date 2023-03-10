@@ -15,5 +15,8 @@ For content, please follow the <a href="https://github.com/leodenglovescode/ezci
 <img src="https://img.shields.io/badge/Version-2.0.0beta-green?style=for-the-badge&logo=github" alt="version">
 <img src="https://img.shields.io/website?down_color=red&down_message=OFFLINE&style=for-the-badge&up_color=green&up_message=ONLINE&url=https%3A%2F%2Fleodenglovescode.github.io%2Fecw%2F" alt="online/offline"><br>
 <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/leodenglovescode/ezcite?color=lightblue&label=Commit%20Activity&logo=git&style=for-the-badge">
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/leodenglovescode/ezcite?label=Issues&style=for-the-badge"><br>
+<img alt="GitHub forks" src="https://img.shields.io/github/forks/leodenglovescode/ezcite?color=white&style=social">
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/leodenglovescode/ezcite?style=social">
 
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/leodenglovescode/ezcite?label=Code%20Size&style=for-the-badge">
