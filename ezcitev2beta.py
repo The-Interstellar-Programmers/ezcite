@@ -223,7 +223,7 @@ def helpec():
 
 click_btn= PhotoImage(file=cwd_bt)
 
-b1 = tk.Button(image=click_btn, command = helpec, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a')
+b1 = tk.Button(image=click_btn, command = helpec, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a', highlightthickness=0)
 b1.pack(pady=10)
 
 
@@ -277,6 +277,24 @@ b2.pack(pady=10)
 
 #SUBMIT BUTTON
 click_btn_submit= PhotoImage(file=cwd_submit)
+
+
+"""
+ __  __ _        _       ___   __        __   _        ____            
+|  \/  | |      / \     ( _ )  \ \      / /__| |__    / ___| ___ _ __  
+| |\/| | |     / _ \    / _ \   \ \ /\ / / _ \ '_ \  | |  _ / _ \ '_ \ 
+| |  | | |___ / ___ \  | (_) |   \ V  V /  __/ |_) | | |_| |  __/ | | |
+|_|  |_|_____/_/   \_\  \___/     \_/\_/ \___|_.__/   \____|\___|_| |_|
+          
+          
+ ____  _____ _     _____        __
+| __ )| ____| |   / _ \ \      / /
+|  _ \|  _| | |  | | | \ \ /\ / / 
+| |_) | |___| |__| |_| |\ V  V /  
+|____/|_____|_____\___/  \_/\_/   
+                                                                                              
+
+"""
 
 #Button 4 (MLA 8 Website Citation)
 def mla8web():
@@ -337,6 +355,20 @@ b2 = tk.Button(image=click_btn3, command = mla8web, borderwidth=0, bg='#00FFFF',
 b2.pack(pady=10)
 
 
+"""
+ __  __ _        _       ___    ____              _       ____            
+|  \/  | |      / \     ( _ )  | __ )  ___   ___ | | __  / ___| ___ _ __  
+| |\/| | |     / _ \    / _ \  |  _ \ / _ \ / _ \| |/ / | |  _ / _ \ '_ \ 
+| |  | | |___ / ___ \  | (_) | | |_) | (_) | (_) |   <  | |_| |  __/ | | |
+|_|  |_|_____/_/   \_\  \___/  |____/ \___/ \___/|_|\_\  \____|\___|_| |_|
+
+ ____  _____ _     _____        __
+| __ )| ____| |   / _ \ \      / /
+|  _ \|  _| | |  | | | \ \ /\ / / 
+| |_) | |___| |__| |_| |\ V  V /  
+|____/|_____|_____\___/  \_/\_/   
+                                  
+"""
 
 #Button 5 (MLA 8 Book Citation)
 def mla8book():
@@ -468,14 +500,15 @@ def mla8book():
             
             
             
-            publishers = soup.find_all(class_="text-success")
+            publishers = soup.find_all(class_="text-success")[-2]
             for publisher in publishers:
                if "publisher" in str(publisher):
                      # Extract the publisher's name from the text content
                      publisher = publisher.text.strip()
                      publishernameoutput = publisher + ", "
                else:
-                  publishernameoutput = ""
+                  publisher = publisher.text.strip()
+                  publishernameoutput = publisher + ", "
 
                      # Print the publisher's name
                      #print(f"Author: {author_name}")
@@ -564,7 +597,20 @@ b2 = tk.Button(image=click_btn4, command = mla8book, borderwidth=0, bg='#00FFFF'
 b2.pack(pady=10)
 
 
+"""
+    _    ____   _      _____  __        __   _        ____            
+   / \  |  _ \ / \    |___  | \ \      / /__| |__    / ___| ___ _ __  
+  / _ \ | |_) / _ \      / /   \ \ /\ / / _ \ '_ \  | |  _ / _ \ '_ \ 
+ / ___ \|  __/ ___ \    / /     \ V  V /  __/ |_) | | |_| |  __/ | | |
+/_/   \_\_| /_/   \_\  /_/       \_/\_/ \___|_.__/   \____|\___|_| |_|
+                                                                      
+ ____  _____ _     _____        __
+| __ )| ____| |   / _ \ \      / /
+|  _ \|  _| | |  | | | \ \ /\ / / 
+| |_) | |___| |__| |_| |\ V  V /  
+|____/|_____|_____\___/  \_/\_/   
 
+"""
 
 #Button 6 (APA 7 Website Citation)
 def apa7web():
@@ -621,7 +667,25 @@ b2 = tk.Button(image=click_btn5, command = apa7web, borderwidth=0, bg='#00FFFF',
 b2.pack(pady=10)
 
 
-
+"""
+        
+    _    ____   _      _____   ____              _       ____            
+   / \  |  _ \ / \    |___  | | __ )  ___   ___ | | __  / ___| ___ _ __  
+  / _ \ | |_) / _ \      / /  |  _ \ / _ \ / _ \| |/ / | |  _ / _ \ '_ \ 
+ / ___ \|  __/ ___ \    / /   | |_) | (_) | (_) |   <  | |_| |  __/ | | |
+/_/   \_\_| /_/   \_\  /_/    |____/ \___/ \___/|_|\_\  \____|\___|_| |_|
+                                                                         
+                                                
+                                                
+          
+ ____  _____ _     _____        __
+| __ )| ____| |   / _ \ \      / /
+|  _ \|  _| | |  | | | \ \ /\ / / 
+| |_) | |___| |__| |_| |\ V  V /  
+|____/|_____|_____\___/  \_/\_/   
+                                 
+                                                                                           
+"""
 #Button 7 (APA 7 Book Citation)
 def apa7book():
    bt1()
@@ -675,7 +739,7 @@ def apa7book():
 
                      # Reverse the order of the name parts (if applicable)
                      name_parts = author_name.split()
-                     if len(name_parts) > 1 and len(name_parts) < 10:
+                     if len(name_parts) > 1:
                         author_LAST_name = name_parts[-1]
                         AN.append(author_LAST_name)
                         author_FIRST_name = "".join(name_parts[:-1])
@@ -703,7 +767,7 @@ def apa7book():
 
                         # Reverse the order of the name parts (if applicable)
                         name_parts = author_name.split()
-                        if len(name_parts) > 1 and len(name_parts) < 10:
+                        if len(name_parts) > 1: 
                            author_LAST_name = name_parts[-1]
                            #Put Author name into List "AN2" (For APA7 Citation Format : Last Name, First Name Letter)
                            AN2.append(author_LAST_name)
@@ -728,6 +792,7 @@ def apa7book():
                      
                      #Get Last Name (0), (1) is First Name
                      res_lastname = res[0]
+                     res_firstname = res[1]
                      
                      def listToString(res_lastname):
                         # initialize an empty string
@@ -744,7 +809,9 @@ def apa7book():
                      print(listToString(res_lastname))
                      
                      NAMEOUT = lastnameout[0]
-                     print(NAMEOUT)
+                     NAMEOUTPUT = NAMEOUT + "."
+                     authornameoutput = res_firstname + ", " + NAMEOUTPUT
+                     print(authornameoutput)
 
 
 
@@ -756,14 +823,15 @@ def apa7book():
             
             
             
-            publishers = soup.find_all(class_="text-success")
+            publishers = soup.find_all(class_="text-success")[-2]
             for publisher in publishers:
-               if "publisher" in str(publisher):
+               if "publisher" or "publishers" in str(publisher):
                      # Extract the publisher's name from the text content
                      publisher = publisher.text.strip()
-                     publishernameoutput = publisher + ", "
+                     publishernameoutput = publisher + "."
                else:
-                  publishernameoutput = ""
+                  publisher = publisher.text.strip()
+                  publishernameoutput = publisher + "."
 
                      # Print the publisher's name
                      #print(f"Author: {author_name}")
@@ -781,7 +849,16 @@ def apa7book():
                # Extract the book's name from the text content
                book_name = bookname.text.strip()  
                booknameoutput = book_name
-      
+               
+            pdprocessedoutputt = ""
+            def listToString(pdprocessedoutput):
+               # initialize an empty string
+               str1 = ""
+               # traverse in the string
+               for ele in pdprocessedoutput:
+                  str1 += ele
+               # return string
+               return str1
 
 
             
@@ -799,7 +876,9 @@ def apa7book():
             pd.pop(0)
             #DELETE ISBN ELEMENT 2 (When we have deleted isbn element 1, isbn element 2 is the new '0')
             pd.pop(0)
-         
+            
+            
+
 
          
          
@@ -823,13 +902,28 @@ def apa7book():
             res_NOSYMBOL2 = res_NOSYMBOL1.replace(",", "")
             res_NOSYMBOL3 = res_NOSYMBOL2.replace("[", "")
             res_NOSYMBOL4 = res_NOSYMBOL3.replace("]", "")
-            publishdateoutput = res_NOSYMBOL4
+            publishdaterawoutput = res_NOSYMBOL4
                
-
-
-                           
+            if '-' in publishdaterawoutput:
+               #No SPECIFIC DATE! (e.g 1998-04-30 is incorrect, 1998 is correct)
+               print(publishdaterawoutput)
+               pdprocessedoutput = publishdaterawoutput.split('-')
+               print(pdprocessedoutput)
+               #DELETE ISBN ELEMENT 1 (Element '1')
+               pdprocessedoutput.pop(1)
+               #DELETE ISBN ELEMENT 2 (When we have deleted isbn element 1, isbn element 2 is the new '1')
+               pdprocessedoutput.pop(1)
+               publishdateFINALoutput = listToString(pdprocessedoutput)
+            else:
+               publishdateFINALoutput = publishdaterawoutput
+               
+            
+            
+            #pd.pop(1)
+            #pd.pop(2)
+            #print("FUNNNNNNNNN", pd)                          
          
-            APA7_BOOK_CITATION_OUTPUT = authornameoutput# + ". " + booknameoutput + ". " + publishernameoutput + publishdateoutput + "."
+            APA7_BOOK_CITATION_OUTPUT = authornameoutput + " (" + publishdateFINALoutput + "). " + booknameoutput + ". " + publishernameoutput 
             #print("\n\n\n\n", MLA8_BOOK_CITATION_OUTPUT, "\n\n\n")
 
 
@@ -842,7 +936,7 @@ def apa7book():
       else:
          T.delete("1.0","end")
          T.insert(tk.END, f"{response.status_code}")
-         messagebox.showerror(title=f"Error: {response.status_code}", message=f"Failed to retrieve ISBN Number from 'isbnsearcher.com'\n Status code: {response.status_code}\n\nPossible Error Codes:\n\n404 - ISBN Number Not Found\n1020 - Access Denied (Check if a Proxy is open)")
+         messagebox.showerror(title=f"Error: {response.status_code}", message=f"Failed to retrieve ISBN Number from 'isbnsearcher.com'\n Status code: {response.status_code}\n\nPossible Error Codes:\n\n404 - ISBN Number Not Found\n1020 - Access Denied (Check if a Proxy is open)\n504 - Gateway time out (Error is not on your side, it is on server side)")
    
 click_btn6= PhotoImage(file=cwd_bt6)
 
