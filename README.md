@@ -10,10 +10,10 @@ For content, please follow the <a href="https://github.com/leodenglovescode/ezci
 <br>
 <br>
 <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge&logo=github" alt="License_MIT"><br>
-<img src="https://img.shields.io/badge/Made with-Python-yellow?style=for-the-badge&logo=python" alt="made with python">
+
 <img src="https://img.shields.io/github/downloads/leodenglovescode/ezcite/total?style=for-the-badge" alt="downloads"><br>
 <img src="https://img.shields.io/badge/Version-2.0.0beta-green?style=for-the-badge&logo=github" alt="version">
 <img src="https://img.shields.io/website?down_color=red&down_message=OFFLINE&style=for-the-badge&up_color=green&up_message=ONLINE&url=https%3A%2F%2Fleodenglovescode.github.io%2Fecw%2F" alt="online/offline"><br>
-<img alt="Issues" src="https://img.shields.io/github/issues/leodenglovescode/ezcite?style=for-the-badge&color=0088ff>
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/leodenglovescode/ezcite?color=lightblue&label=Commit%20Activity&logo=git&style=for-the-badge">
 
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/leodenglovescode/ezcite?label=Code%20Size&style=for-the-badge">
