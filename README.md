@@ -6,7 +6,7 @@ Made By: Leodeng & Allen Wang<br>
 Please Contribute to this project!:blush: <br>We would be very happy if someone gave us more ideas and PR's! :heart:<br><br>
 P.S. <br>When submitting Pull Requests and issues, please, PLEASE be specific about the title and the content, in the title, do not write something like "It's not working" "Code needs fixing", instead, write something like "____ Function needs fixing"(PR), "____ Part of the code is not working"(Issues)...<br>Also, Search previous suggestions before making a new one, as yours may be a duplicate.<br>
 
-For content, please follow the PR and Issue Template:
+For content, please follow the <a href="https://github.com/leodenglovescode/ezcite/blob/main/CONTRIBUTING.md">PR & Issue Template.</a>
 <br>
 <br>
 <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge&logo=github" alt="License_MIT"><br>
