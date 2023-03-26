@@ -9,9 +9,11 @@ import os
 def credsmusic():
     pygame.init()
     screen=pygame.display.set_mode([1100,600])
-    cwd_font = os.getcwd() + r'/assets/fonts/SfDistantGalaxy-0l3d.ttf'
     cwd_music = os.getcwd() + r'/assets/sound/swmt.mp3'
-
+    cwd_icon = os.getcwd() + r'/assets/images/appicon-pygame.png'
+    img = pygame.image.load(cwd_icon)
+    pygame.display.set_icon(img)
+    
     yellow = (255,255,0)
     red = (255,0,0)
     green = (0,255,0)
@@ -210,15 +212,19 @@ def credsmusic():
     while running:
         for event in pygame.event.get():
             if event.type == QUIT:
-                running = False
+                 exit()
+                #running = False
 
-        screen.fill(0)
+        screen.fill((0, 0, 0))
         deltaY-= 1
         i=0
         msg_list=[]
         pos_list=[]
         
-        font = pygame.font.Font(cwd_font, 29)
+        try:
+            font = pygame.font.SysFont("Star Jedi", 29)
+        except:
+            font = pygame.font.SysFont("Courier", 29) 
 
         #msg = font.render('Hello there, how are you?', True, red)
         for line in movie_credits.split('\n'):

@@ -1,0 +1,20 @@
+
+
+[ERROR:]
+Failed to retrieve ISBN Number from 'isbnsearcher.com'   Status code: {response.status_code} Citation Format: APA 7 Book Citation
+[LOG TIME: 2023-03-23 at 10:36:24]
+
+[ERROR:]
+("Failed to retrieve ISBN Number from 'isbnsearcher.com'   Status code: ", {404}, 'Citation Format: APA 7 Book Citation  User Input: ', 'ghgh')
+[LOG TIME: 2023-03-23 at 10:54:10]
+
+[ERROR:]
+Failed to retrieve ISBN Number from isbnsearcher.com   Status code: {404}Citation Format: APA 7 Book Citation  User Input: asdadsads
+[LOG TIME: 2023-03-23 at 10:58:47]
+
+[ERROR:]
+Failed to retrieve ISBN Number from isbnsearcher.com
+Status code: {404}
+Citation Format: APA 7 Book Citation
+User Input: oeirguioer
+[LOG TIME: 2023-03-23 at 10:59:33]

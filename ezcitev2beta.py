@@ -5,12 +5,6 @@ By Leodeng & Allen Wang
 Leo's Website & Email: leosblog.xyz | leodeng_hack@163.com
 HELP WANTED: help pls bro i need fixed code without any errors and pls send the email as well moneyyy wil be 1000000000usd haha just kiding were using u 4 free lol haha troll my CODE IS DRIVING ME CRAZYYYYYYYYY :)))(((())))(((())))(((())))
 ahem... 'ello mate! oops, ok, here we go... hello stranger, if you are seeing this right now we have an official code license (MIT License)!
-
-***IMPORTANT***
-READ THIS BEFORE YOU SHARE MIXES OF MY PROJECT:
-This is a FOSS(Free and Open-Source Software), which means you can share remixes freely, without crediting my team(although I would very much like that haha), 
-because it has a passive MIT License.
-
 """
 
 """
@@ -26,7 +20,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
 INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOL DERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
@@ -128,20 +122,24 @@ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PA
 """
 
 
-#Imports
+#LIBRARY Imports
 from tkinter import * 
 import tkinter as tk  
 from tkinter import messagebox
 import webbrowser 
 import os
 from playsound import playsound
-from scrtext import credsmusic
 import requests
 from bs4 import BeautifulSoup
 import time
 import csv
 from datetime import datetime
 from datetime import date
+import json
+import sys
+from scrtext import credsmusic
+from pygame import mixer
+
 
 
 
@@ -152,6 +150,7 @@ from datetime import date
 window = tk.Tk()
 window.configure(background='#3b3b4a')
 window.title('ezCite Version 2.0.0b')  
+cwd_settings = os.getcwd() + r'/assets/settings.json'
 cwd_icon = os.getcwd() + r'/assets/images/appicon.png'
 cwd_bt = os.getcwd() + r'/assets/images/button_help-faq.png'
 cwd_bt1 = os.getcwd() + r'/assets/images/button_about-the-devs.png'
@@ -163,13 +162,91 @@ cwd_bt6 = os.getcwd() + r'/assets/images/button_apa-book-citation.png'
 cwd_submit = os.getcwd() + r'/assets/images/button_submit.png'
 cwd_sound = os.getcwd() + r'/assets/images/button_sound.png'
 cwd_creds = os.getcwd() + r'/assets/images/button_credits.png'
-cwd_music = os.getcwd() + r'/assets/images/button_music.png'
-cwd_credits = os.getcwd() + r'/scrtext.py'
+cwd_theme = os.getcwd() + r'/assets/images/button_theme.png'
+cwd_save = os.getcwd() + r'/assets/images/button_save.png'
+cwd_errorlog = os.getcwd() + r'/assets/errorlog.txt'
 
 
 cwdbtclick1 = os.getcwd() + r'/assets/sound/b_click_variation1.wav'
+
+today = datetime.now()
+errorlogtime = today.strftime("%Y-%m-%d at %X")
+
+def writeerrorlog(e):
+   #APPEND MODE
+   errorlogstr = str(e)
+   file1 = open(cwd_errorlog, "a")
+   file1.write("\n[ERROR:]\n")
+   file1.write(e)
+   file1.write("\n[LOG TIME: ")
+   file1.write(errorlogtime)
+   file1.write("]\n")
+   file1.close()
+
+
+
+   
+try:
+   #Read Settings JSON file
+   with open(cwd_settings, 'r') as openfile:
+   
+      # Reading from json file
+      settingsjson = json.load(openfile)
+
+   #INITALIZE SETTINGS
+   settings_colortheme = settingsjson['colortheme']
+   settings_soundeffectvolume = settingsjson['soundeffectvol']
+   settings_randmsoundeffects = settingsjson['randomsoundeffects']
+   
+except Exception as e:
+   writeerrorlog(e)
+   
+mixer.init()
+mixer.music.load(cwdbtclick1)
+
+print("Sound EFFECT VOLUME json string: ",  settings_soundeffectvolume)
+
+if settings_soundeffectvolume == 1.0:
+   print("Volume set: 0.0")
+   mixer.music.set_volume(0.0)
+if settings_soundeffectvolume >= 10.0:
+   print("Volume set: 0.1")
+   mixer.music.set_volume(0.1)
+if settings_soundeffectvolume >= 20.0:
+   print("Volume set: 0.2")
+   mixer.music.set_volume(0.2)
+if settings_soundeffectvolume >= 30.0:
+   print("Volume set: 0.3")
+   mixer.music.set_volume(0.3)
+if settings_soundeffectvolume >= 40.0:
+   print("Volume set: 0.4")
+   mixer.music.set_volume(0.4)
+if settings_soundeffectvolume >= 50.0:
+   print("Volume set: 0.5")
+   mixer.music.set_volume(0.5)
+if settings_soundeffectvolume >= 60.0:
+   print("Volume set: 0.6")
+   mixer.music.set_volume(0.6)
+if settings_soundeffectvolume >= 70.0:
+   print("Volume set: 0.7")
+   mixer.music.set_volume(0.7)
+if settings_soundeffectvolume >= 80.0:
+   print("Volume set: 0.8")
+   mixer.music.set_volume(0.8)
+if settings_soundeffectvolume >= 90.0:
+   print("Volume set: 0.9")
+   mixer.music.set_volume(0.9)
+if settings_soundeffectvolume >= 100.0:
+   print("Volume set: 1.0")
+   mixer.music.set_volume(1.0)
+
+   
 def bt1():
-   playsound(cwdbtclick1)
+   mixer.music.play()
+
+
+
+
 
 
 window.geometry('545x770')  
@@ -182,7 +259,7 @@ window.iconphoto(False, p1)
 
 
 #Titles
-title = tk.Label(window, text='ezCite', bg='#3b3b4a', font=('Ubuntu Regular', 45), width=40, height=0, fg='#ffffff')#font=('Ubuntu Regular', 45), width=40, height=0, fg='#000000')
+title = tk.Label(window, text='ezCite', bg='#3b3b4a', font=('Ubuntu Regular', 45), width=40, height=0, fg='#ffffff')
 title.pack()
 title1 = tk.Label(window, text='|---  The Ultimate Citation Generator  ---|', bg='#3b3b4a', font=('Ubuntu Regular', 28),width=40, height=0, fg='#ffffff')
 title1.pack()
@@ -190,10 +267,9 @@ title1.pack()
 #Global Variables
 global mwc
 mwc = ""
+global el
+el = ""
 
-
-
-#Variables
 
 
 #CSV file config
@@ -223,14 +299,22 @@ def helpec():
 
 click_btn= PhotoImage(file=cwd_bt)
 
-b1 = tk.Button(image=click_btn, command = helpec, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a', highlightthickness=0)
+b1 = tk.Button(image=click_btn, command = helpec, bg='#3b3b4a', border=100, activebackground='#3b3b4a', bd='0')
 b1.pack(pady=10)
 
 
 #Button 2 (About)
 def abec():
    bt1()
-   messagebox.showinfo( "About the Devs (VERY JUICY STUFF hAhAh)", "Leo: Hello Stranger! \n(Or maybe friend in this situation, ok if u know me dont look haha) \nI'm Leo! One of the developers of ezCite,\na 12 year old developer that likes to code(lol)\nI admire Linus Torvalds and also like to use ubuntu/fedora.\nI mainly code in: Python, HTML, Markdown, and CSS(a little)\n\n\n\nAllen:")
+   atd = Toplevel(window)
+   atd.title("ezCite Version 2.0.0b - About the Developers")
+   atd.geometry("1080x630")
+   atd.configure(background='#3b3b4a')
+   Label(atd,text ="About the Developers:", bg='#3b3b4a', font=('Ubuntu Regular', 40), width=40, height=2).pack()
+   Label(atd,text ="Hello Stranger! \n(Or maybe friend in this situation, ok if u know me dont look haha) \nI'm Leo! One of the developers of ezCite,\na 13 year old developer that likes to code(lol)\nI admire Linus Torvalds and also like to use ubuntu/fedora.\nI mainly code in: Python, HTML, Markdown, and CSS(a little)", bg='#3b3b4a', font=('Ubuntu Regular', 22), width=400, height=10).pack()
+   Label(atd,text ="Allen, a highly skilled design educator and specialist in digital design, robotics, and artificial intelligence. \nWith extensive experience in these fields, \nhe has developed a deep understanding of how to integrate these cutting-edge technologies into education. \nAllen is committed to using AI to revolutionize the way we approach education, \nwith a focus on developing innovative, \nAI-powered educational products that deliver more effective and personalized learning experiences. \nHis expertise in these areas makes him a valuable asset to the education industry, \nand his passion and dedication to the field ensure that he is always at the forefront of the latest developments and trends.\nDevelopment of educational products, \nbelieving that AI can bring more possibilities and innovation to education.\n Allen's passion and talent can bring more opportunities for students and the education industry.", bg='#3b3b4a', font=('Ubuntu Regular', 18), width=200, height=11).pack()
+
+     
 
 click_btn1= PhotoImage(file=cwd_bt1)
 
@@ -240,32 +324,72 @@ b2.pack(pady=10)
 #Settings function buttons
 click_btn_sound= PhotoImage(file=cwd_sound)
 click_btn_creds= PhotoImage(file=cwd_creds)
-click_btn_music= PhotoImage(file=cwd_music)
+click_btn_theme= PhotoImage(file=cwd_theme)
+click_btn_save= PhotoImage(file=cwd_save)
 
 #Button 3 (Settings)
 def s():
    bt1()
    def soundprefs():
-      pass
+      v1 = DoubleVar()
+      soundprefwindow = Toplevel(window)
+      soundprefwindow.title("ezCite Version 2.0.0b - Sound Preferences")
+      soundprefwindow.geometry("400x350")
+      soundprefwindow.configure(background='#3b3b4a')
+      Label(soundprefwindow,text ="ezCite Sound Preferences", bg='#3b3b4a', font=('Ubuntu Regular', 20), width=45, height=3).pack()
 
-   def musicprefs():
-      pass
+      Label(soundprefwindow,text ="Sound Effects Volume (RESTART TO SEE CHANGES!)", bg='#3b3b4a', font=('Ubuntu Regular', 15), width=50, height=3).pack()
+      
+      cv = "Current Volume: " + str(settings_soundeffectvolume)
+      
+      Label(soundprefwindow,text = cv, bg='#3b3b4a', font=('Ubuntu Regular', 12), width=40, height=2).pack()
+   
+      s1 = Scale(soundprefwindow, variable = v1, from_ = 1, to = 100, orient = HORIZONTAL)  
+      
+      
+      def save():
+         settingsjson["soundeffectvol"] = v1.get()   
+         jsonfile = open(cwd_settings, "w")
+         json.dump(settingsjson, jsonfile)
+         jsonfile.close()
+         pass
+      
+      savese = Button(soundprefwindow, image=click_btn_save, command=save, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a')
+       
+           
+      
+      s1.pack(anchor = CENTER) 
+      savese.pack(pady=15)
+      
+
+   def themeprefs():
+      themeprefwindow = Toplevel(window)
+      themeprefwindow.title("ezCite Version 2.0.0b - Theme Preferences")
+      themeprefwindow.geometry("200x100")
+      themeprefwindow.configure(background='#3b3b4a')
+      Label(themeprefwindow,text ="COMING SOON", bg='#3b3b4a', font=('Ubuntu Regular', 20), width=40, height=3).pack()
 
    def showcredits():
       credsmusic()
+      p1 = PhotoImage(file = cwd_icon)
+      window.iconphoto(False, p1) 
+
+      
+
    pref = Toplevel(window)
-   pref.title("ezCite Version 2.0.0a - Settings")
-   pref.geometry("800x600")
+   pref.title("ezCite Version 2.0.0b - Settings")
+   pref.geometry("400x500")
    pref.configure(background='#3b3b4a')
-   Label(pref,text ="ezCite Preferences", bg='#3b3b4a', font=('Ubuntu Regular', 20), width=40, height=3).pack()
+   Label(pref,text ="ezCite Preferences", bg='#3b3b4a', font=('Ubuntu Regular', 40), width=40, height=3).pack()
 
    sound = Button(pref, image=click_btn_sound, command=soundprefs, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a')
    sound.pack(pady=15)
+   
 
    creds = Button(pref, image=click_btn_creds, command=showcredits, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a')
    creds.pack(pady=15)
 
-   music = Button(pref, image=click_btn_music, command=musicprefs, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a')
+   music = Button(pref, image=click_btn_theme, command=themeprefs, borderwidth=0, bg='#3b3b4a', activebackground='#3b3b4a')
    music.pack(pady=15)
 
    
@@ -300,7 +424,7 @@ click_btn_submit= PhotoImage(file=cwd_submit)
 def mla8web():
    bt1()
    mla8webwin = Toplevel(window)
-   mla8webwin.title("ezCite Version 2.0.0a - MLA 8 Website Citation")
+   mla8webwin.title("ezCite Version 2.0.0b - MLA 8 Website Citation")
    mla8webwin.geometry("1200x600")
    mla8webwin.minsize(1200, 600)
    mla8webwin.maxsize(1200, 600)
@@ -316,34 +440,69 @@ def mla8web():
    T.pack()
    Label(mla8webwin, text = 'Note:\n If you forgot to Copy&Paste Your Citation, or want to copy 10 citations all together,then find the "ezcite_citations.csv" file in the directory(folder)\n that ezcite is in (Usually Desktop), then you will see a log of citations\n that you entered, with the output.     :3', bg='#3b3b4a', font=('Ubuntu Regular', 17), fg='#ffffff').pack(pady=20)
    def get_mla8_web_citation(entry):
-      mwc = entry.get()
-      reqs = requests.get(mwc)
-      entry.delete(0, 'end')
-      T.delete("1.0","end")
-      #reqs.content or .text (MUST USE reqs.content here, FOR CHINESE SUPPORT! DO NOT, EVER, CHANGE IT!)
-      soup = BeautifulSoup(reqs.content, 'html.parser')
-      #Find website title
-      for title in soup.find_all('title'):
-         title.get_text()
-      websitetitle = title.get_text()
-      link = mwc
-      #Citation date shown on-screen
-      citedate = today.strftime("%d %b. %Y.")
-      #Date recorded on CSV file
-      csv_citedate1 = today.strftime("%Y-%m-%d")
-      #Put Citation together in a variable
-      mla8_webcite_result = websitetitle + ". " + link + ". " + "Accessed " + citedate
-      #Print result to-screen (CONSOLE, users won't see that)
-      print(mla8_webcite_result)
-      #SHOW USERS ON-SCREEN:
-      T.insert(tk.END, mla8_webcite_result)
-      #Open CSV ('a' option doesn't delete anything when it restarts...)
-      with open(filename, 'a', newline ='') as csvfile:
-            csvwriter = csv.writer(csvfile)
-            #Write citation details (Date, Citation, Type)
-            mla8_webcite_csv = [[csv_citedate1,mla8_webcite_result,typemlaweb]]
-            #Write the details
-            csvwriter.writerows(mla8_webcite_csv)
+      try:
+         global mwc
+         mwc = entry.get()
+         reqs = requests.get(mwc)
+         entry.delete(0, 'end')
+         T.delete("1.0","end")
+         tic = time.perf_counter()
+         #reqs.content or .text (MUST USE reqs.content here, FOR CHINESE SUPPORT! DO NOT, EVER, CHANGE IT!)
+         soup = BeautifulSoup(reqs.content, 'html.parser')
+         #Find website title
+         for title in soup.find_all('title'):
+            title.get_text()
+         websitetitle = title.get_text()
+         link = mwc
+         #Citation date shown on-screen
+         citedate = today.strftime("%d %b. %Y.")
+         #Date recorded on CSV file
+         csv_citedate1 = today.strftime("%Y-%m-%d")
+         #Put Citation together in a variable
+         mla8_webcite_result = websitetitle + ". " + link + ". " + "Accessed " + citedate
+         #Print result to-screen (CONSOLE, users won't see that)
+         print(mla8_webcite_result)
+         #SHOW USERS ON-SCREEN:
+         T.insert(tk.END, mla8_webcite_result)
+         #Open CSV ('a' option doesn't delete anything when it restarts...)
+         with open(filename, 'a', newline ='') as csvfile:
+               csvwriter = csv.writer(csvfile)
+               #Write citation details (Date, Citation, Type)
+               mla8_webcite_csv = [[csv_citedate1,mla8_webcite_result,typemlaweb]]
+               #Write the details
+               csvwriter.writerows(mla8_webcite_csv)
+               
+      except requests.exceptions.MissingSchema:
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc + "\n\nError Code: requests.exceptions.MissingSchema\n\nCause: No Website Headers \n\nFix: WEBSITE HEADERS MUST CONTAIN https:// OR http://!!!"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
+         
+      except requests.exceptions.InvalidSchema: 
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc + "\n\nError Code: requests.exceptions.InvalidSchema\n\nCause: Incorrect Website Headers \n\nFix: Check Website Headers (https:// or http://)"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
+         
+      except requests.exceptions.InvalidURL:
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc + "\n\nError Code: requests.exceptions.InvalidURL\n\nCause: No URL Provided \n\nFix: Provide URL"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
+         
+      except requests.exceptions.ConnectionError:
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc + "\n\nError Code: requests.exceptions.ConnectionError\n\nCause: Incorrectly Entered Website Address or Cannot Connect to Website\n\nFix: Provide Correct URL or Check Internet Connection"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
         
    
  
@@ -374,7 +533,7 @@ b2.pack(pady=10)
 def mla8book():
    bt1()
    mla8bookwin = Toplevel(window)
-   mla8bookwin.title("ezCite Version 2.0.0a - MLA 8 Book Citation")
+   mla8bookwin.title("ezCite Version 2.0.0b - MLA 8 Book Citation")
    mla8bookwin.geometry("1200x600")
    mla8bookwin.minsize(1200, 600)
    mla8bookwin.maxsize(1200, 600)
@@ -585,8 +744,11 @@ def mla8book():
             #Open CSV ('a' option doesn't delete anything when it restarts...)
 
       else:
+         res_sc = {response.status_code}
          T.delete("1.0","end")
          T.insert(tk.END, f"{response.status_code}")
+         e = "Failed to retrieve ISBN Number from isbnsearcher.com\nStatus code: " + str(res_sc) + "\nCitation Format: MLA 8 Book Citation\nUser Input: " + str(mwc_mla8_book)
+         writeerrorlog(str(e))
          messagebox.showerror(title=f"Error: {response.status_code}", message=f"Failed to retrieve ISBN Number from 'isbnsearcher.com'\n Status code: {response.status_code}\n\nPossible Error Codes:\n\n404 - ISBN Number Not Found\n1020 - Access Denied (Check if a Proxy is open)")
          
       
@@ -616,51 +778,85 @@ b2.pack(pady=10)
 def apa7web():
    bt1()
    apa7webwin = Toplevel(window)
-   apa7webwin.title("ezCite Version 2.0.0a - APA 7 Website Citation")
+   apa7webwin.title("ezCite Version 2.0.0b - APA 7 Website Citation")
    apa7webwin.geometry("1200x600")
    apa7webwin.minsize(1200, 600)
    apa7webwin.maxsize(1200, 600)
-   apa7webwin.configure(background='aqua')
-   Label(apa7webwin,text ="ezCite - APA 7 Website Citation Generator", bg='aqua', font=('Ubuntu Regular', 40), width=40, height=3, fg='#000000').pack()
-   Label(apa7webwin, text = 'Website (JSTOR is not supported)', bg='aqua', font=('Ubuntu Regular', 24), fg='#000000').pack()
+   apa7webwin.configure(background='#3b3b4a')
+   Label(apa7webwin,text ="ezCite - APA 7 Website Citation Generator", bg='#3b3b4a', font=('Ubuntu Regular', 40), width=40, height=3, fg='#ffffff').pack()
+   Label(apa7webwin, text = 'Website (JSTOR is not supported)', bg='#3b3b4a', font=('Ubuntu Regular', 24), fg='#ffffff').pack()
    entry = Entry(apa7webwin, font=('Ubuntu Regular',11))
    entry.pack(ipadx= 400)
    submit = Button(apa7webwin, image=click_btn_submit, command=lambda: get_apa7_web_citation(entry), borderwidth=0, bg='#00FFFF', activebackground='#00FFFF')
    submit.pack(pady=30)
-   Label(apa7webwin, text = 'Citation Output (Copy&Paste Supported):', bg='aqua', font=('Ubuntu Regular', 24), fg='#000000').pack(pady=20)
+   Label(apa7webwin, text = 'Citation Output (Copy&Paste Supported):', bg='#3b3b4a', font=('Ubuntu Regular', 24), fg='#ffffff').pack(pady=20)
    T = Text(apa7webwin, height = 2, width = 105, font=('Ubuntu Regular', 18))
    T.pack()
-   Label(apa7webwin, text = 'Note:\n If you forgot to Copy&Paste Your Citation, or want to copy 10 citations all together,then find the "ezcite_citations.csv" file in the directory(folder)\n that ezcite is in (Usually Desktop), then you will see a log of citations\n that you entered, with the output.      :3', bg='aqua', font=('Ubuntu Regular', 17), fg='#000000').pack(pady=20)
+   Label(apa7webwin, text = 'Note:\n If you forgot to Copy&Paste Your Citation, or want to copy 10 citations all together,then find the "ezcite_citations.csv" file in the directory(folder)\n that ezcite is in (Usually Desktop), then you will see a log of citations\n that you entered, with the output.      :3', bg='#3b3b4a', font=('Ubuntu Regular', 17), fg='#ffffff').pack(pady=20)
    def get_apa7_web_citation(entry):
-      mwc_apa7 = entry.get()
-      reqs = requests.get(mwc_apa7)
-      entry.delete(0, 'end')
-      T.delete("1.0","end")
-      #reqs.content or .text (MUST USE req.content here, FOR CHINESE SUPPORT! DO NOT, EVER, CHANGE IT!)
-      soup = BeautifulSoup(reqs.content, 'html.parser')
-      #Find website title
-      for title in soup.find_all('title'):
-         title.get_text()
-      websitetitle_apa_website = title.get_text()
-      link_apa_website = mwc_apa7
-      #Citation date shown on-screen
-      citedate_apa_website = today.strftime("%b %d, %Y,")
-      #Date recorded on CSV file
-      csv_citedate_apa_website = today.strftime("%Y-%m-%d")
-      #Put Citation together in a variable
-      apa7_webcite_result = "(n.d.). " + websitetitle_apa_website + " Retrieved " +  citedate_apa_website + mwc_apa7
-      #Print result to-screen (CONSOLE, users won't see that)
-      print(apa7_webcite_result)
-      #SHOW USERS ON-SCREEN:
-      T.insert(tk.END, apa7_webcite_result)
-      #Open CSV ('a' option doesn't delete anything when it restarts...)
-      with open(filename, 'a', newline ='') as csvfile:
+      try: 
+         global mwc_apa7
+         mwc_apa7 = entry.get()
+         reqs = requests.get(mwc_apa7)
+         entry.delete(0, 'end')
+         T.delete("1.0","end")
+         #reqs.content or .text (MUST USE req.content here, FOR CHINESE SUPPORT! DO NOT, EVER, CHANGE IT!)
+         soup = BeautifulSoup(reqs.content, 'html.parser')
+         #Find website title
+         for title in soup.find_all('title'):
+            title.get_text()
+            websitetitle_apa_website = title.get_text()
+         link_apa_website = mwc_apa7
+         #Citation date shown on-screen
+         citedate_apa_website = today.strftime("%b %d, %Y,")
+         #Date recorded on CSV file
+         csv_citedate_apa_website = today.strftime("%Y-%m-%d")
+         #Put Citation together in a variable
+         apa7_webcite_result = "(n.d.). " + websitetitle_apa_website + " Retrieved " +  citedate_apa_website + mwc_apa7
+         #Print result to-screen (CONSOLE, users won't see that)
+         print(apa7_webcite_result)
+         #SHOW USERS ON-SCREEN:
+         T.insert(tk.END, apa7_webcite_result)
+         #Open CSV ('a' option doesn't delete anything when it restarts...)
+         with open(filename, 'a', newline ='') as csvfile:
             csvwriter = csv.writer(csvfile)
             #Write citation details (Date, Citation, Type)
             apa7_webcite_csv = [[csv_citedate_apa_website,apa7_webcite_result,typeapaweb]]
             #Write the details
             csvwriter.writerows(apa7_webcite_csv)
-   
+      except requests.exceptions.MissingSchema:
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc_apa7
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc_apa7 + "\n\nError Code: requests.exceptions.MissingSchema\n\nCause: No Website Headers \n\nFix: WEBSITE HEADERS MUST CONTAIN https:// OR http://!!!"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
+         
+      except requests.exceptions.InvalidSchema: 
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc_apa7
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc_apa7 + "\n\nError Code: requests.exceptions.InvalidSchema\n\nCause: Incorrect Website Headers \n\nFix: Check Website Headers (https:// or http://)"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
+         
+      except requests.exceptions.InvalidURL:
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc_apa7
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc_apa7 + "\n\nError Code: requests.exceptions.InvalidURL\n\nCause: No URL Provided \n\nFix: Provide URL"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
+         
+      except requests.exceptions.ConnectionError:
+         T.delete("1.0","end")
+         T.insert(tk.END, f"FAILED")
+         e = "Failed to retrieve Website Citation from: " + mwc_apa7
+         writeerrorlog(str(e))
+         msgboxerror = "Failed to retrieve Website Citation from:" + mwc + "\n\nError Code: requests.exceptions.ConnectionError\n\nCause: Incorrectly Entered Website Address or Cannot Connect to Website\n\nFix: Provide Correct URL or Check Internet Connection"
+         messagebox.showerror(title=f"Error:", message=msgboxerror)
+         
+      
 click_btn5= PhotoImage(file=cwd_bt5)
 
 b2 = tk.Button(image=click_btn5, command = apa7web, borderwidth=0, bg='#00FFFF', activebackground='#00FFFF')
@@ -690,7 +886,7 @@ b2.pack(pady=10)
 def apa7book():
    bt1()
    mla8bookwin = Toplevel(window)
-   mla8bookwin.title("ezCite Version 2.0.0a - APA 7 Book Citation")
+   mla8bookwin.title("ezCite Version 2.0.0b - APA 7 Book Citation")
    mla8bookwin.geometry("1200x600")
    mla8bookwin.minsize(1200, 600)
    mla8bookwin.maxsize(1200, 600)
@@ -758,6 +954,7 @@ def apa7book():
                      # datetime object containing current date and time
                      now = datetime.now()
                      dt_string = now.strftime("%Y/%m/%d %H:%M:%S")
+                     break
                else:
                      print("AUTHOR NAME NOT IN TEXT-SUCCESS")
                      authors = soup.find_all(class_="col-8 col-sm-9 mb-1")[-1]
@@ -812,6 +1009,9 @@ def apa7book():
                      NAMEOUTPUT = NAMEOUT + "."
                      authornameoutput = res_firstname + ", " + NAMEOUTPUT
                      print(authornameoutput)
+                     break
+               
+               
 
 
 
@@ -935,7 +1135,10 @@ def apa7book():
 
       else:
          T.delete("1.0","end")
+         res_sc = {response.status_code}
          T.insert(tk.END, f"{response.status_code}")
+         e = "Failed to retrieve ISBN Number from isbnsearcher.com\nStatus code: " + str(res_sc) + "\nCitation Format: APA 7 Book Citation\nUser Input: " + str(mwc_apa7_book)
+         writeerrorlog(str(e))
          messagebox.showerror(title=f"Error: {response.status_code}", message=f"Failed to retrieve ISBN Number from 'isbnsearcher.com'\n Status code: {response.status_code}\n\nPossible Error Codes:\n\n404 - ISBN Number Not Found\n1020 - Access Denied (Check if a Proxy is open)\n504 - Gateway time out (Error is not on your side, it is on server side)")
    
 click_btn6= PhotoImage(file=cwd_bt6)
