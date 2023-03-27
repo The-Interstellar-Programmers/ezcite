@@ -128,7 +128,6 @@ import tkinter as tk
 from tkinter import messagebox
 import webbrowser 
 import os
-from playsound import playsound
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -136,8 +135,7 @@ import csv
 from datetime import datetime
 from datetime import date
 import json
-import sys
-from scrtext import credsmusic
+from scrtext import  credsmusic
 from pygame import mixer
 
 
@@ -274,7 +272,15 @@ el = ""
 
 #CSV file config
 fields = ['Date', 'Citation', 'Type']
-filename = "ezcite_citations.csv"
+os.system("cd ..")
+os.system("cd ..")
+os.system("cd ..")
+
+fileplace = str(os.path.expanduser('~')) + "/Desktop"
+
+
+filename = fileplace + "/ezcite_citations.csv"
+print("ezCite Citations CSV FILE LOCATION: ", filename)
 
 #CSV Saved File Date
 today = date.today()
@@ -286,9 +292,17 @@ typeapabook = 'APA7 Book Citation'
 typeapaweb = 'APA7 Website Citation'
 
 #Open CSV for INITIATION: write first title row
-with open(filename,'a', newline ='') as csvfile:
-    csvwriter = csv.writer(csvfile)
-    csvwriter.writerow(fields)
+try:
+   #If no file on desktop named "ezcite_citations.csv" create it
+   with open(filename,'x', newline ='') as csvfile:
+      csvwriter = csv.writer(csvfile)
+      csvwriter.writerow(fields)
+except:
+   #If there is, open it
+   with open(filename,'a', newline ='') as csvfile:
+      csvwriter = csv.writer(csvfile)
+   pass
+    
 
 
 
@@ -742,6 +756,13 @@ def mla8book():
             T.delete("1.0","end")
             T.insert(tk.END, mla8_bookcite_result)
             #Open CSV ('a' option doesn't delete anything when it restarts...)
+            csv_citedate1 = today.strftime("%Y-%m-%d")
+            with open(filename, 'a', newline ='') as csvfile:
+               csvwriter = csv.writer(csvfile)
+               #Write citation details (Date, Citation, Type)
+               mla8_bookcite_csv = [[csv_citedate1,mla8_bookcite_result,typemlabook]]
+               #Write the details
+               csvwriter.writerows(mla8_bookcite_csv)
 
       else:
          res_sc = {response.status_code}
@@ -812,7 +833,7 @@ def apa7web():
          #Date recorded on CSV file
          csv_citedate_apa_website = today.strftime("%Y-%m-%d")
          #Put Citation together in a variable
-         apa7_webcite_result = "(n.d.). " + websitetitle_apa_website + " Retrieved " +  citedate_apa_website + mwc_apa7
+         apa7_webcite_result = "(n.d.). " + websitetitle_apa_website + "." + " Retrieved " +  citedate_apa_website + " " + mwc_apa7
          #Print result to-screen (CONSOLE, users won't see that)
          print(apa7_webcite_result)
          #SHOW USERS ON-SCREEN:
@@ -1132,6 +1153,13 @@ def apa7book():
             T.delete("1.0","end")
             T.insert(tk.END, apa7_bookcite_result)
             #Open CSV ('a' option doesn't delete anything when it restarts...)
+            csv_citedate1 = today.strftime("%Y-%m-%d")
+            with open(filename, 'a', newline ='') as csvfile:
+               csvwriter = csv.writer(csvfile)
+               #Write citation details (Date, Citation, Type)
+               apa7_bookcite_csv = [[csv_citedate1,apa7_bookcite_result,typeapabook]]
+               #Write the details
+               csvwriter.writerows(apa7_bookcite_csv)
 
       else:
          T.delete("1.0","end")
