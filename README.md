@@ -2,6 +2,7 @@
 ---- App-Like Citation Generator with some pizazz! :)
 <br><br>
 Made By: Leodeng & Allen Wang<br>
+Helpful Testers: David<br>
 <br>
 Please Contribute to this project!:blush: <br>We would be very happy if someone gave us more ideas and PR's! :heart:<br><br>
 P.S. <br>When submitting Pull Requests and issues, please, PLEASE be specific about the title and the content, in the title, do not write something like "It's not working" "Code needs fixing", instead, write something like "____ Function needs fixing"(PR), "____ Part of the code is not working"(Issues)...<br>Also, Search previous suggestions before making a new one, as yours may be a duplicate.<br>
