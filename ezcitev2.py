@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 ezCite Version 2.0.0 (GUI VERSION)
 By Leodeng & Allen Wang
