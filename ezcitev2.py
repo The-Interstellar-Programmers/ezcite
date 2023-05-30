@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 ezCite Version 2.0.0 (GUI VERSION)
 By Leodeng & Allen Wang
@@ -123,9 +122,9 @@ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PA
 
 
 #LIBRARY Imports
-from tkinter import * 
-import tkinter as tk  
+from tkinter import *
 from tkinter import messagebox
+import tkinter as tk  
 import webbrowser 
 import os
 import requests
